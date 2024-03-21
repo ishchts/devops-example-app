@@ -6,7 +6,7 @@ on:
       - 'main'
 
 env:
-  TEST_TAG: text
+  TEST_TAG: latest
 
 jobs:
   docker:
@@ -27,7 +27,7 @@ jobs:
         with:
           context: .
           load: true
-          tags: ${{ env.TEST_TAG }}
+          tags: ishchts/devops-example-app:${{ env.TEST_TAG }}
 
       - run: make compose-test-ci
       - run: make compose-lint-ci
@@ -37,7 +37,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: text
+          tags: ishchts/devops-example-app:${{ env.TEST_TAG }}
 
       # - name: Build and push caddy
       #   uses: docker/build-push-action@v2
